@@ -1,6 +1,4 @@
 .doc-page {
-  max-width: 720px;
-  margin: 0 auto;
   padding: 32px 20px;
   text-align: left;
 }
@@ -49,10 +47,37 @@
   margin: 0;
 }
 
+.doc-page__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.doc-page__field-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text);
+  opacity: 0.55;
+}
+
 .doc-page__description {
   font-size: 16px;
   line-height: 1.6;
   color: var(--text);
+  margin: 0;
+}
+
+.doc-page__content {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  white-space: pre-wrap;
+  padding: 16px;
+  background: var(--surface, #f8f9fa);
+  border-radius: var(--radius, 8px);
+  border: 1px solid var(--border);
 }
 
 /* ─── Meta ──────────────────────────────────────────────────── */

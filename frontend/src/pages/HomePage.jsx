@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { getAllDocuments } from '../api/documentApi'
 import DocumentList from '../components/DocumentList'
 import SearchBar from '../components/SearchBar'
 import CreateDocumentForm from '../components/CreateDocumentForm'
+import './HomePage.css'
 
 function HomePage() {
+  const navigate = useNavigate()
   const [documents, setDocuments] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -40,14 +43,18 @@ function HomePage() {
 
   const filtered = query
     ? documents.filter((doc) =>
-        (doc.title ?? '').toLowerCase().includes(query.toLowerCase()),
+        (doc.title ?? '').toLowerCase().startsWith(query.toLowerCase()),
       )
     : documents
 
   return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
-        <button onClick={() => setShowForm((v) => !v)}>
+    <div className="hp">
+      <div className="hp__header">
+        <h2 className="hp__title">Документы</h2>
+        <button
+          className={showForm ? 'hp__btn hp__btn--ghost' : 'hp__btn hp__btn--primary'}
+          onClick={() => setShowForm((v) => !v)}
+        >
           {showForm ? 'Отмена' : '+ Создать документ'}
         </button>
       </div>
@@ -55,7 +62,7 @@ function HomePage() {
         <CreateDocumentForm onSuccess={handleDocumentCreated} />
       )}
       <SearchBar onSearch={setQuery} />
-      <DocumentList documents={filtered} loading={loading} error={error} />
+      <DocumentList documents={filtered} loading={loading} error={error} onView={(id) => navigate(`/documents/${id}`)} />
     </div>
   )
 }

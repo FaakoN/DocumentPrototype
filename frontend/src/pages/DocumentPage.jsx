@@ -57,7 +57,7 @@ function DocumentPage() {
     )
   }
 
-  const { title, description, createdAt, updatedAt, type } = document
+  const { id: docId, title, description, content, author, createdAt } = document
 
   const formatDate = (dateStr) =>
     new Date(dateStr).toLocaleDateString('ru-RU', {
@@ -70,7 +70,7 @@ function DocumentPage() {
 
   return (
     <div className="doc-page">
-      <Link to="/" className="doc-page__back">&larr; Back</Link>
+      <Link to="/" className="doc-page__back">&larr; Назад</Link>
 
       <article className="doc-page__card">
         <div className="doc-page__header">
@@ -92,25 +92,36 @@ function DocumentPage() {
           </span>
 
           <h1 className="doc-page__title">{title}</h1>
-
-          {type && <span className="doc-card__badge">{type}</span>}
         </div>
 
         {description && (
-          <p className="doc-page__description">{description}</p>
+          <div className="doc-page__field">
+            <span className="doc-page__field-label">Описание</span>
+            <p className="doc-page__description">{description}</p>
+          </div>
+        )}
+
+        {content && (
+          <div className="doc-page__field">
+            <span className="doc-page__field-label">Содержимое</span>
+            <div className="doc-page__content">{content}</div>
+          </div>
         )}
 
         <div className="doc-page__meta">
+          {author && (
+            <span className="doc-page__meta-item">
+              <strong>Автор:</strong> {author}
+            </span>
+          )}
           {createdAt && (
             <span className="doc-page__meta-item">
-              Created: {formatDate(createdAt)}
+              <strong>Создан:</strong> {formatDate(createdAt)}
             </span>
           )}
-          {updatedAt && (
-            <span className="doc-page__meta-item">
-              Updated: {formatDate(updatedAt)}
-            </span>
-          )}
+          <span className="doc-page__meta-item">
+            <strong>ID:</strong> {docId}
+          </span>
         </div>
       </article>
     </div>
