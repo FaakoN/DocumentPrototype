@@ -43,29 +43,6 @@ public class DocumentService {
                 .collect(Collectors.toList());
     }
 
-    // UPDATE
-    @Transactional
-    public DocumentResponesDto update(Long id, DocumentRequestDto requestDto) {
-        Document document = documentRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Document not found with id: " + id));
-
-        document.setTitle(requestDto.getTitle());
-        document.setDescription(requestDto.getDescription());
-        document.setContent(requestDto.getContent());
-        document.setAuthor(requestDto.getAuthor());
-
-        Document updated = documentRepository.save(document);
-        return toResponseDto(updated);
-    }
-
-    // DELETE
-    @Transactional
-    public void delete(Long id) {
-        if (!documentRepository.existsById(id)) {
-            throw new EntityNotFoundException("Document not found with id: " + id);
-        }
-        documentRepository.deleteById(id);
-    }
 
     // ── Маппинг ──────────────────────────────────────────────────────────────
 
