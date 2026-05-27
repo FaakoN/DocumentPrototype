@@ -64,9 +64,10 @@ docker compose up --build
 ### 4. Открыть в браузере
 
 | Адрес | Что |
-|---|---|
+|--|---|
 | http://localhost | React приложение |
 | http://localhost:8080/swagger-ui.html | Swagger UI |
+|  | Swagger UI |
 
 ## API
 
@@ -93,9 +94,6 @@ curl -X POST http://localhost:8080/documents \
 
 # Получить все документы
 curl http://localhost:8080/documents
-
-# Поиск
-curl http://localhost:8080/documents?query=договор
 ```
 
 ## Разработка без Docker

@@ -19,7 +19,6 @@ function CreateDocumentForm({ onSuccess }) {
   function handleChange(e) {
     const { name, value } = e.target
     setFields((prev) => ({ ...prev, [name]: value }))
-    // сбрасываем ошибку поля при вводе
     if (fieldErrors[name]) {
       setFieldErrors((prev) => ({ ...prev, [name]: '' }))
     }
