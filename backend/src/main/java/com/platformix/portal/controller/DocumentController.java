@@ -18,7 +18,7 @@ public class DocumentController {
 
     private final DocumentService documentService;
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<DocumentResponesDto>> getAll() {
         List<DocumentResponesDto> documents = documentService.getAll();
         return ResponseEntity.ok(documents);
@@ -30,7 +30,7 @@ public class DocumentController {
         return ResponseEntity.ok(document);
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<DocumentResponesDto> create(@Valid @RequestBody DocumentRequestDto requestDto) {
         DocumentResponesDto created = documentService.create(requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);

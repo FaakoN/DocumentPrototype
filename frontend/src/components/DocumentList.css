@@ -1,0 +1,117 @@
+/* ─── Grid ───────────────────────────────────────────────────── */
+.doc-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.doc-list__item {
+  /* растягивает карточку на всю высоту ячейки */
+  display: flex;
+
+  & > * {
+    flex: 1;
+  }
+}
+
+/* ─── Skeleton (загрузка) ────────────────────────────────────── */
+.doc-list--loading {
+  /* тот же grid, что и у ul */
+}
+
+@keyframes shimmer {
+  from { background-position: -400px 0; }
+  to   { background-position:  400px 0; }
+}
+
+.doc-list__skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.doc-list__skeleton-icon,
+.doc-list__skeleton-line {
+  border-radius: var(--radius-sm);
+  background: linear-gradient(
+    90deg,
+    var(--border) 25%,
+    var(--code-bg) 50%,
+    var(--border) 75%
+  );
+  background-size: 400px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+.doc-list__skeleton-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.doc-list__skeleton-line {
+  height: 14px;
+  width: 100%;
+
+  &--title {
+    height: 18px;
+    width: 70%;
+  }
+
+  &--short {
+    width: 45%;
+  }
+}
+
+/* ─── Empty / Error state ────────────────────────────────────── */
+.doc-list__state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--text);
+}
+
+.doc-list__state-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: var(--accent-bg);
+  border-radius: 50%;
+  color: var(--accent);
+  margin-bottom: 8px;
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* красная иконка для ошибки */
+[role='alert'] .doc-list__state-icon {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.doc-list__state-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.doc-list__state-text {
+  font-size: 14px;
+  line-height: 1.55;
+  max-width: 320px;
+}
