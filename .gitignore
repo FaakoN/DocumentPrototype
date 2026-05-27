@@ -1,0 +1,9 @@
+frontend/node_modules/
+
+.idea
+
+.env
+
+*.iml
+
+backend/.mvn
