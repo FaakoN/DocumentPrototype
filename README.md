@@ -67,7 +67,6 @@ docker compose up --build
 |--|---|
 | http://localhost | React приложение |
 | http://localhost:8080/swagger-ui.html | Swagger UI |
-|  | Swagger UI |
 
 ## API
 
