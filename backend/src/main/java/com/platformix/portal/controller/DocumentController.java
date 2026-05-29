@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class DocumentController {
     @Operation(summary = "Получить все документы")
     @ApiResponse(responseCode = "200", description = "Список документов")
     @GetMapping("/")
-    public ResponseEntity<List<DocumentResponesDto>> getAll() {
+    public ResponseEntity<@NonNull List<DocumentResponesDto>> getAll() {
         List<DocumentResponesDto> documents = documentService.getAll();
         return ResponseEntity.ok(documents);
     }
@@ -38,7 +39,7 @@ public class DocumentController {
             @ApiResponse(responseCode = "404", description = "Документ не найден")
     })
     @GetMapping("/{id}")
-    public ResponseEntity<DocumentResponesDto> getById(
+    public ResponseEntity<@NonNull DocumentResponesDto> getById(
             @Parameter(description = "ID документа") @PathVariable Long id) {
         DocumentResponesDto document = documentService.getById(id);
         return ResponseEntity.ok(document);
@@ -50,7 +51,7 @@ public class DocumentController {
             @ApiResponse(responseCode = "400", description = "Ошибка валидации")
     })
     @PostMapping("/")
-    public ResponseEntity<DocumentResponesDto> create(
+    public ResponseEntity<@NonNull DocumentResponesDto> create(
             @Valid @RequestBody DocumentRequestDto requestDto) {
         DocumentResponesDto created = documentService.create(requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
